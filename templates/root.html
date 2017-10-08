@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %} Login {% endblock %}</title>
+  </head>
+  <body>
+    {% block content1 %}
+    <h1> Enter your username and password. </h1>
+    <form method = 'POST' action = "/result">
+      Enter username: <input type = "text" name = "usr">
+      <br>
+      Enter password: <input type = "password" name = "pwd">
+      <br><br>
+      <input type = "submit" value = "Submit">
+    </form>
+    {% endblock %}
+  </body>
+</html>
+

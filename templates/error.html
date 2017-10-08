@@ -1,0 +1,18 @@
+{% extends "root.html" %}
+
+{% block title %}
+Error
+{% endblock %}
+
+{% block content1 %}
+<h1>Try again.</h1> <br>
+
+{% if not cUsr %}
+Wrong username. <br>
+{% endif %}
+{% if not cPwd %}
+Wrong password. <br>
+{% endif %}
+
+
+{% endblock %}

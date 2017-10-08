@@ -1,0 +1,14 @@
+{% extends "root.html" %}
+
+{% block title %}
+Welcome
+{% endblock %}
+
+{% block content1 %}
+<h1> Welcome, {{usr}} </h1>
+It's good to see you!
+<form method = 'POST' action = '/logout'>
+  <br><input type = "submit" value = "Log out" name = "log">
+</form>
+{% endblock %}
+
