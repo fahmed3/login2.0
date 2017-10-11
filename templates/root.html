@@ -4,6 +4,8 @@
     <title>{% block title %} Login {% endblock %}</title>
   </head>
   <body>
+    {% set messages = get_flashed_messages() %}
+    
     {% block content1 %}
     <h1> Enter your username and password. </h1>
     <form method = 'POST' action = "/result">
