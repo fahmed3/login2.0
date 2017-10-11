@@ -14,36 +14,44 @@ form.secret_key = os.urandom(8)
 @form.route('/', methods = ['POST', 'GET'])
 def root():
     if 'usr' in session:
-        return requests() #go to welcome
+        return redirect(url_for('welcome'))
     else:
         return render_template("root.html")
 
-#Correct username: softdev
-#Correct password: pd09
-@form.route('/result', methods = ['POST', 'GET'])
-def requests():
+@form.route('/welcome')
+def welcome():
     #are you logged in already?
     if 'usr' in session:
         return render_template("result.html", usr = session['usr'])
-    #either POST or GET method
+    else:
+        return redirect(url_for('root'))
+
+    
+#authorization
+#Correct username: softdev
+#Correct password: pd09
+@form.route('/auth', methods = ['POST'])
+def auth():
     usr = request.form["usr"]
     pwd = request.form["pwd"]
     #If username and password are correct, then results
     if usr == 'softdev' and pwd == 'pd09':
         session['usr'] = usr
-        return render_template("result.html", usr = usr)
+        flash(session['usr'] + ' has succesfully logged in.')
+        return redirect(url_for('welcome'))
     #flash error msgs
     else:
         if not usr == 'softdev' :
             flash('Invalid username')
         if not pwd == 'pd09' :
             flash('Incorrect password')
-        return redirect(url_for('root'))
-
+        return redirect(url_for('root'))    
+    
 #logout route
 @form.route('/logout', methods = ['POST', 'GET'])
 def logout():
-    session.pop('usr') #end session
+    flash(session['usr'] + ' has logged out.')
+    session.pop('usr') #end session    
     return redirect(url_for("root"))#brings us back to root page
     
 if __name__ == "__main__":

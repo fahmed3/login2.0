@@ -4,11 +4,13 @@
     <title>{% block title %} Login {% endblock %}</title>
   </head>
   <body>
-    {% set messages = get_flashed_messages() %}
-    
+    {% set msgs = get_flashed_messages() %}
+    {% for m in msgs %}
+    <font color = 'red'> {{m}} <br> </font>
+    {% endfor %}
     {% block content1 %}
     <h1> Enter your username and password. </h1>
-    <form method = 'POST' action = "/result">
+    <form method = 'POST' action = "/auth">
       Enter username: <input type = "text" name = "usr">
       <br>
       Enter password: <input type = "password" name = "pwd">
